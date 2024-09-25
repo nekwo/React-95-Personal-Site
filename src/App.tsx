@@ -14,6 +14,8 @@ import '@react95/core/GlobalStyle';
 import '@react95/core/themes/rose.css';
 import './modules/kawaii.css';
 
+
+
 //icon styles
 const Icon = styled.button`
   all: unset;
@@ -99,10 +101,35 @@ function App() {
 
   const [showgif, setshowgif] = useState(true)
 
+
+  const [currentPath, setCurrentPath] = useState<string>('public');
+  const [files, setFiles] = useState<string[]>([
+    '/x.jpg', 'arona-blue-archive.gif', 'Flowerwaifu.png','TLRYAMITOYAK.gif','CityScape.png','levanpolkacomp.mp4']);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  
+  const handleFileClick = (file: string) => {
+    if (file.includes('.')) {
+      setSelectedFile(`${currentPath}/${file}`);
+    } else {
+      const newPath = `${currentPath}/${file}`;
+      setCurrentPath(newPath);
+    }
+  };
+  
+  const handleBackClick = () => {
+    const newPath = currentPath.split('/').slice(0, -1).join('/');
+    setCurrentPath(newPath || 'public');
+  };
+
+const handleCloseFileModal = () => {
+  setSelectedFile(null);
+};
+
+const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
+
   return (
     
     <>
-      
 
       {showgif && ( //Arona gif
   <Modal
@@ -399,94 +426,232 @@ function App() {
             </Modal>
             )}
 
-    {/* Articles */}
-      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      
 
-      {showArticles &&(<Modal
-        style={{
-          width: 'fit-content',
-          height: 'fit-content',
-          padding: '5px',
-        }}
-        icon={<Star variant="32x32_4" />}
-        title={selectedArticle ? selectedArticle.title : 'Articles'}
-        dragOptions={{
-          defaultPosition: {
-            x: -200,
-            y: 500,
-          },
-        }}
-        titleBarOptions={[
-          <TitleBar.Help
-            key="help"
-            onClick={() => {
-              alert('Yell Meow for help!');
-            }}
-          />,
-          <TitleBar.Minimize key="minimize" />,
-          <TitleBar.Close key="close" onClick={() => { setSelectedArticle(null); setShowArticles(false); }} />,
-        ]}
-        buttons={[]}
-      >
-        <Modal.Content
-          width="fit-content"
-          height="fit-content"
-          boxShadow="$in"
+      {/* File Explorer */}
+      {isFileExplorerOpen && (
+        <Modal
+          style={{
+            width: 'fit-content',
+            height: 'fit-content',
+            padding: '5px'
+          }}
+          icon={<WindowsExplorer variant="32x32_4" />}
+          title="File Explorer"
+          dragOptions={{
+            defaultPosition: {
+              x: -400,
+              y: 700,
+            },
+          }}
+          titleBarOptions={[
+            <TitleBar.Help
+              key="help"
+              onClick={() => {
+                alert('Yell Meow for help! Or dm on ig @godoftimee');
+              }}
+            />,
+            <TitleBar.Minimize key="minimize2" />,
+            <TitleBar.Close key="close2" onClick={() => setIsFileExplorerOpen(false)} />,
+          ]}
+          buttons={[]}
         >
-          
-          {!selectedArticle && (
-        <div>
-          <h1 style={{ fontSize: '5em', margin: '0' }}>Latest Posts</h1>
-        </div>
+          <Modal.Content
+      width="640px"  // Set exact width
+      height="360px" // Set exact height
+      boxShadow="$in"
+    >
+      
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px' }}>
+        {files.map((file) => (
+          <div
+            key={file}
+            onClick={() => handleFileClick(file)}
+            style={{
+              width: '100px',
+              height: '100px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              padding: '5px',
+            }}
+          >
+            {file.endsWith('.png') || file.endsWith('.gif') || file.endsWith('.jpg') ? (
+              <img
+                src={`/${currentPath}/${file}`}
+                alt={file}
+                style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+              />
+            ) : file.endsWith('.mp4') ? (
+              <div style={{ width: '80px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span>🎥</span>
+              </div>
+            ) : (
+              <div style={{ width: '80px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span>{file}</span>
+              </div>
+            )}
+            <span style={{ marginTop: '5px', textAlign: 'center', fontSize: '12px' }}>{file}</span>
+          </div>
+        ))}
+      </div>
+    </Modal.Content>
+        </Modal>
       )}
-          {!selectedArticle ? (
-            <ul style={{ listStyleType: 'none', padding: 0 }}>
-              {articles.map((article, index) => (
-                <li
-                  key={index}
-                  style={{
-                    margin: '10px 0',
-                    padding: '10px',
-                    border: '1px solid #ddd',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.3s',
-                  }}
-                  onClick={() => setSelectedArticle(article)}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f0f0f0')}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
-                >
-                  <h2 style={{ margin: 0, fontSize: '2.2em' }}>{article.title}</h2>
-                  <p style={{ margin: 0, color: '#555' }}>{article.date}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div>
-              <p>{selectedArticle.content}</p>
-              <button
-                onClick={() => setSelectedArticle(null)}
+
+      {selectedFile && (
+        <Modal
+          style={{
+            width: 'fit-content',
+            height: 'fit-content',
+            padding: '5px'
+          }}
+          icon={<ReaderClosed variant="32x32_4" />}
+          title={selectedFile ? selectedFile.split('/').pop() : ''}
+          dragOptions={{
+            defaultPosition: {
+              x: -400,
+              y: 250,
+            },
+          }}
+          titleBarOptions={[
+            <TitleBar.Help
+              key="help"
+              onClick={() => {
+                alert('Yell Meow for help! Or dm on ig @godoftimee');
+              }}
+            />,
+            <TitleBar.Minimize key="minimize2" />,
+            <TitleBar.Close key="close2" onClick={handleCloseFileModal} />,
+          ]}
+          buttons={[]}
+        >
+          <Modal.Content
+            width="640px"  // Set exact width
+            height="360px" // Set exact height
+            boxShadow="$in"
+          >
+            {selectedFile && (selectedFile.endsWith('.txt') ? (
+              <TextArea
+                rows={20}
+                cols={60}
+                value={`Content of ${selectedFile}`}
+                readOnly
+              />
+            ) : selectedFile.endsWith('.mp4') ? (
+              <ReactPlayer
+                url={`/${selectedFile}`}
+                controls
+                width="100%"
+                height="100%"
+                playing={false}
+                muted={false}
+              />
+            ) : selectedFile.endsWith('.png') || selectedFile.endsWith('.gif') || selectedFile.endsWith('.jpg') ? (
+              <img
+                src={`/${selectedFile}`}
+                alt={selectedFile}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            ) : (
+              <p>Preview not available</p>
+            ))}
+          </Modal.Content>
+        </Modal>
+      )}
+      {/*  */}
+    
+      {/* Articles */}
+      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+              
+
+              {showArticles &&(<Modal
                 style={{
-                  display: 'block',
-                  margin: '10px auto',
-                  padding: '10px 20px',
-                  backgroundColor: '#0078d4',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '5px',
-                  cursor: 'pointer',
-                  fontSize: '1em',
+                  width: 'fit-content',
+                  height: 'fit-content',
+                  padding: '5px',
                 }}
+                icon={<Star variant="32x32_4" />}
+                title={selectedArticle ? selectedArticle.title : 'Articles'}
+                dragOptions={{
+                  defaultPosition: {
+                    x: -200,
+                    y: 500,
+                  },
+                }}
+                titleBarOptions={[
+                  <TitleBar.Help
+                    key="help"
+                    onClick={() => {
+                      alert('Yell Meow for help!');
+                    }}
+                  />,
+                  <TitleBar.Minimize key="minimize" />,
+                  <TitleBar.Close key="close" onClick={() => { setSelectedArticle(null); setShowArticles(false); }} />,
+                ]}
+                buttons={[]}
               >
-                Back To Articles
-              </button>
-            </div>
-          )}
-        </Modal.Content>
-      </Modal>)}
+                <Modal.Content
+                  width="fit-content"
+                  height="fit-content"
+                  boxShadow="$in"
+                >
+                  
+                  {!selectedArticle && (
+                <div>
+                  <h1 style={{ fontSize: '5em', margin: '0' }}>Latest Posts</h1>
+                </div>
+              )}
+                  {!selectedArticle ? (
+                    <ul style={{ listStyleType: 'none', padding: 0 }}>
+                      {articles.map((article, index) => (
+                        <li
+                          key={index}
+                          style={{
+                            margin: '10px 0',
+                            padding: '10px',
+                            border: '1px solid #ddd',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            transition: 'background-color 0.3s',
+                          }}
+                          onClick={() => setSelectedArticle(article)}
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f0f0f0')}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'white')}
+                        >
+                          <h2 style={{ margin: 0, fontSize: '2.2em' }}>{article.title}</h2>
+                          <p style={{ margin: 0, color: '#555' }}>{article.date}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div>
+                      <p>{selectedArticle.content}</p>
+                      <button
+                        onClick={() => setSelectedArticle(null)}
+                        style={{
+                          display: 'block',
+                          margin: '10px auto',
+                          padding: '10px 20px',
+                          backgroundColor: '#0078d4',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '5px',
+                          cursor: 'pointer',
+                          fontSize: '1em',
+                        }}
+                      >
+                        Back To Articles
+                      </button>
+                    </div>
+                  )}
+                </Modal.Content>
+              </Modal>)}
       </div> 
-     {/*  */} 
+      {/*  */} 
 
         
       <div //background settings
@@ -502,9 +667,9 @@ function App() {
           backgroundPosition: 'center', // Centers the image
           backgroundRepeat: 'no-repeat', // Prevents the image from repeating
           zIndex: -1, // Keeps the background behind everything
-        }}></div>
+      }}></div>
 
-        <div //backgrounds backround
+      <div //backgrounds backround
         style={{
           position: 'fixed',
           top: 0,
@@ -517,12 +682,12 @@ function App() {
           backgroundPosition: 'center', // Centers the image
           backgroundRepeat: 'no-repeat', // Prevents the image from repeating
           zIndex: -2, // Keeps the background behind everything
-        }}></div>
+       }}></div>
 
 
-        {/* desktop icons */
-        // Main
-        }
+      {/* desktop icons */}
+
+      {/* Main*/}
       <Draggable position={position} onStop={handleStop}>     
       <Icon onDoubleClick={() => setShowModal(true)} 
         style={{
@@ -566,22 +731,32 @@ function App() {
         Articles.exe
       </Icon>
       </Draggable> 
-
       {/*  */}
 
 
       {/*Start Button List */}
-      <TaskBar list={ <List>
-            <List.Item icon={<ReaderClosed variant="32x32_4" />} >
-            Local Disk (C:)
-            </List.Item>
-            <List.Item icon={<WindowsExplorer variant="32x32_4" /> } >
-            Windows Explorer
-            </List.Item>
-            <List.Item icon={<img src={`/github-mark.svg`} alt="GitHub" className="github-icon" style={{ width: 32, height: 32 }} />} onClick={() => { window.open('https://github.com/nekwo', '_blank'); }}>
-            <span className="github-link-text">GitHub</span>
-            </List.Item>
-          </List>
+      <TaskBar list={ 
+        <List>
+
+        <List.Item
+          icon={<ReaderClosed variant="32x32_4" />}
+          onClick={() => setIsFileExplorerOpen(true)}
+          >
+          Local Disk (C:)
+        </List.Item>
+
+        <List.Item
+          icon={<WindowsExplorer variant="32x32_4" />}
+          onClick={() => setIsFileExplorerOpen(true)}
+        >
+          Windows Explorer
+        </List.Item>
+
+        <List.Item icon={<img src={`/github-mark.svg`} alt="GitHub" className="github-icon" style={{ width: 32, height: 32 }} />} onClick={() => { window.open('https://github.com/nekwo', '_blank'); }}>
+          <span className="github-link-text">GitHub</span>
+          </List.Item>
+
+        </List>
           
 
         }/> 

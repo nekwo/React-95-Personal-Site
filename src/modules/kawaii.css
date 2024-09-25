@@ -1,0 +1,164 @@
+:root {
+  --r95-zIndex-modal: 2;
+  --r95-zIndex-tooltip: 3;
+  --r95-zIndex-taskbar: 3;
+  --r95-space-0: 0px;
+  --r95-space-1: 1px;
+  --r95-space-2: 2px;
+  --r95-space-3: 0px;
+  --r95-space-4: 4px;
+  --r95-space-5: 5px;
+  --r95-space-6: 6px;
+  --r95-space-7: 7px;
+  --r95-space-8: 8px;
+  --r95-space-9: 9px;
+  --r95-space-10: 10px;
+  --r95-space-11: 11px;
+  --r95-space-12: 12px;
+  --r95-space-13: 13px;
+  --r95-space-14: 14px;
+  --r95-space-15: 15px;
+  --r95-space-16: 16px;
+  --r95-space-17: 17px;
+  --r95-space-18: 18px;
+  --r95-space-19: 19px;
+  --r95-space-20: 20px;
+  --r95-color-anchor: #000e7a;
+  --r95-color-anchorVisited: #440381;
+  --r95-color-borderDark: #8605B5;
+  --r95-color-borderDarkest: #05A2FC;
+  --r95-color-borderLight: #d2d2d2;
+  --r95-color-borderLighter: #e6e6e6;
+  --r95-color-borderLightest: #ffffff;
+  --r95-color-canvas: #070508;
+  --r95-color-canvasText: #ffffff;
+  --r95-color-headerBackground: #cea5e3; /*  pink #e9bce3 */
+  --r95-color-headerNotActiveBackground: #cca5d3;
+  --r95-color-headerNotActiveText: #c6c6c6;
+  --r95-color-headerText: #fefefe;
+  --r95-color-material: #85dce1;
+  --r95-color-materialText: #5e3088; /*text color global*/
+  --r95-color-materialTextDisabled: #868a8e;
+  --r95-color-materialTextDisabledShadow: #d2d2d2;
+  --r95-color-materialTextInvert: #ffffff;
+  --r95-color-progress: #000e7a;
+  --r95-color-inputBackground: #ffffff;
+  --r95-color-inputBackgroundDisabled: #d2d2d2;
+  --r95-shadow-out: inset 0.5px 0.5px 0px 0.5px #ffffff,
+          inset 0 0 0 1px #868a8e,
+          1px 0px 0 0px #000000,
+          0px 1px 0 0px #000000,
+          1px 1px 0 0px #000000;
+  --r95-shadow-in: inset 0px 0px 0px 0px,
+        inset 1px 1px 0px 0px #868a8e,
+        0.5px 0.5px 0px 0.5px #ffffff;
+  --r95-shadow-input: inset -1px -1px 0 0 #c3c7cb,
+            inset 1px 1px 0 0 #000000,
+            0.5px 0.5px 0 0.5px #ffffff;
+
+  font-family: PixelMplus;
+
+
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: var(--r95-color-materialText);
+}
+
+
+
+
+/*css for taskbar*/
+
+.r95_1ct83mo0 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-align: left;
+  
+}
+.r95_1ct83mo1 div:first-child {
+  right: 0;
+}
+.r95_1ct83mo2 {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--r95-color-material); /*task bar button color*/
+  padding-block: var(--r95-space-2); /*task bar button padding*/
+  padding-inline: var(--r95-space-3); 
+  margin-right: var(--r95-space-2); 
+  max-width: 150px;
+  border: none;
+  outline: none;
+  color: #440381; /*task bar button text color*/
+  
+}
+.r95_1ct83mo3 {
+  padding-inline: var(--r95-space-5); /*start button padding*/
+}
+.r95_1ct83mo4 {
+  width: 100%; 
+}
+.r95_1ct83mo5 {
+  box-shadow: var(--r95-shadow-in); 
+}
+.r95_1ct83mo6 {
+  box-shadow: var(--r95-shadow-out);
+}
+.r95_1ct83mo7 {
+  padding-top: var(--r95-space-4);
+  padding-bottom: var(--r95-space-0);
+  outline: var(--r95-space-1) dotted var(--r95-color-borderDarkest);
+  outline-offset: calc(var(--r95-space-4) * -1);
+}
+.r95_1ct83mo8 {
+  background-color: #a1dfe2; /* selected task bar button border color*/
+}
+.r95_1ct83mo9 svg {
+  margin-top: var(--r95-space-4);
+  margin-right: var(--r95-space-4);
+  min-width: var(--r95-space-2);
+  width: var(--r95-space-20);
+  height: var(--r95-space-20);
+  shape-rendering: auto;
+}
+
+
+
+
+.r95_iuzg8937 {
+  background-color: #adbfc1; /*task bar time block color*/
+}
+
+.r95_iuzg892l {
+  background-color: #adbfc1; /*task bar color*/
+}
+
+.r95_iuzg893d {
+  background-color: #adbdc4; /*task bar border block color*/
+}
+
+.r95_1ct83mo2{
+  background-color: #adbdc4; /*start button color*/
+}
+
+.github-icon {
+  margin-left: -20px; /* Adjust this value as needed */
+}
+
+.github-link-text {
+  margin-left: 12px; /* Adjust this value as needed */
+}
+
+.r95_1kpzw682 {
+  box-shadow: inset 0px 0px 0px 1px #063034, /* Border line */
+              0px 1px 2px rgba(0, 0, 0, 0.2); /* Hovering effect */
+  padding: 7px;
+  padding-bottom: 22px;
+}

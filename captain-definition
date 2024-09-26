@@ -3,7 +3,7 @@
   "dockerfileLines": [
     "FROM node:lts AS builder", 
     "WORKDIR /usr/src/app", 
-    "COPY package*.json ./",              
+    "COPY package*.json ./", 
     "RUN npm install", 
     "COPY . .", 
     "RUN npm run build", 
@@ -14,7 +14,8 @@
     "COPY --from=builder /usr/src/app/node_modules ./node_modules", 
     "COPY --from=builder /usr/src/app/package*.json ./", 
     "EXPOSE 80", 
-    "CMD [\"npm\", \"run\", \"preview\"]"
+    "CMD [\"npm\", \"run\", \"preview\", \"--\", \"--port\", \"80\"]" 
   ]
 }
+
 

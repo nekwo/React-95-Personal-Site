@@ -1,5 +1,20 @@
 {
- "schemaVersion" :2 ,
- "templateId" :"node/12.22.9"
+  "schemaVersion": 2,
+  "dockerfileLines": [
+    "FROM node:lts AS builder",                # Use the latest LTS version of Node.js
+    "WORKDIR /usr/src/app",                    # Set the working directory in the Docker container
+    "COPY package*.json .",                    # Copy the package.json and package-lock.json (if present)
+    "RUN npm install",                         # Install dependencies
+    "COPY . .",                                # Copy the rest of the application source code
+    "RUN npm run build",                       # Build the app (TypeScript + Vite)
+    
+    "FROM node:lts AS production",             # Create a smaller production build
+    "WORKDIR /usr/src/app",
+    "COPY --from=builder /usr/src/app/dist ./dist", # Copy the build output from the builder stage
+    "COPY --from=builder /usr/src/app/node_modules ./node_modules", # Copy the node_modules from the builder
+    "COPY --from=builder /usr/src/app/package*.json ./", # Copy package files for starting the app
+    "EXPOSE 80",                               # Expose port 80 for HTTP traffic
+    "CMD [\"npm\", \"run\", \"preview\"]"      # Use Vite's built-in preview server for serving the app
+  ]
 }
 

@@ -162,3 +162,20 @@ body {
   padding: 7px;
   padding-bottom: 22px;
 }
+
+
+
+/*mobile css*/
+/* Default modal styles */
+
+
+/* Responsive styles for mobile devices */
+@media (max-width: 600px) {
+  .modal {
+    width: 90%;
+    max-width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

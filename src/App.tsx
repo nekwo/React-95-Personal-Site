@@ -132,7 +132,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
     <>
 
       {showgif && ( //Arona gif
-  <Modal
+  <Modal className="modal"
     style={{
       width: 'fit-content',
       height: 'fit-content',
@@ -175,7 +175,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
       )}
 
       {showMediaPlayerSpotify && ( //spotify player
-              <Modal
+              <Modal 
               style={{
                 width: 'fit-content',
                 height: 'fit-content',
@@ -238,7 +238,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             )}
 
       {showMediaPlayerLuckyop && ( //lucky star op player
-              <Modal
+              <Modal className="modal"
               style={{
                 width: 'fit-content',
                 height: 'fit-content',
@@ -293,7 +293,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             )}
 
       {showMediaPlayerPolka && ( //Miku polka player
-              <Modal
+              <Modal className="modal"
               style={{
                 width: 'fit-content',
                 height: 'fit-content',
@@ -349,7 +349,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             )}
 
       {showModal && !isMinimized && ( //main intro modal exe
-              <Modal
+              <Modal className="modal"
               style={{
                 padding: '5px'
               }}

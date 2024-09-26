@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import ReactPlayer from 'react-player';
-import { Modal, Button,TitleBar, Cursor, List, TaskBar, TextArea, Frame } from '@react95/core';
+import { Modal, TitleBar, List, TaskBar, TextArea, Frame } from '@react95/core';
 import { Faxcover3, ReaderClosed, WindowsExplorer, BatExec,  Star, CdMusic} from '@react95/icons';
 import styled from 'styled-components'
 import Draggable, { DraggableEvent, DraggableData } from 'react-draggable';

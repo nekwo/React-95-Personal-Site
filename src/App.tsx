@@ -50,15 +50,17 @@ function App() {
   const handleStop = (e: DraggableEvent, data: DraggableData) => {
     const { newX, newY } = snapToGrid(data.x, data.y, gridSize);
     setPosition({ x: newX, y: newY });
+    isMobileDevice() ? setShowModal(true) : null
   };
   const handleStop2 = (e: DraggableEvent, data: DraggableData) => {
     const { newX, newY } = snapToGrid(data.x, data.y, gridSize);
     setPosition2({ x: newX, y: newY });
+    isMobileDevice() ? setshowMediaPlayer(true) : null
   };
-
   const handleStop3 = (e: DraggableEvent, data: DraggableData) => {
     const { newX, newY } = snapToGrid(data.x, data.y, gridSize);
     setPosition3({ x: newX, y: newY });
+    isMobileDevice() ? setShowArticles(true) : null
   };
 
   //Modal exe state
@@ -138,20 +140,107 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
   return (
     
     <>
+      {/* modal windows */}
+      
+      {showModal && !isMinimized && ( //main intro modal exe
+              <Modal className="modal"
+              style={{
+                padding: '5px',
+                zIndex: 1
+              }}
 
+              icon={<BatExec variant="32x32_4" />}
+              title="Galactic Executable"
+              dragOptions={{
+                defaultPosition: {
+                  x: window.innerWidth * .3 * -1,
+                  y: window.innerWidth * 0.08,
+                },
+              }}
+              titleBarOptions={[
+                
+                <TitleBar.Help
+                  key="help"
+                  onClick={() => {
+                    alert('Yell Meow for help!');
+                  }}
+                />,
+                <TitleBar.Minimize key="minimize" />,
+                <TitleBar.Close key="close" onClick={() => setShowModal(false)} />,
+                
+                
+              ]}
+              buttons={[
+                //{ value: 'Close', onClick: () => setShowModal(false) },
+                //{ value: 'Minimize', onClick: () => setIsMinimized(true) },
+              ]}
+            >
+              
+
+
+              <Modal.Content
+                width= "fit-content"
+                height="fit-content"
+                boxShadow="$in"
+                //bgColor="white"
+              >
+
+                <div className="container">
+                  <div className="main-content">
+                    <header className="header">
+                      <h1 className="MainAH1">Welcome to My site!</h1>
+                      <p className="paragraph">
+                        By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-22">September 22, 2024</time>
+                      </p>
+                    </header>
+                    <article>
+                      <section className="article">
+                        <h2 className="section-heading">Introduction</h2>
+                        <p className="introduction-paragraph">
+                          On the left you can double click on the desktop icons to open my latest mini apps or just explore (Everything is draggable and close-able; minimizing coming soon!)
+                        </p>
+                      </section>
+                      <section className="article">
+                        <h2 className="section-heading">Directory</h2>
+                        <p className="section-paragraph">Here is a quick directory to my latest stuff</p>
+                        <p className="section-paragraph">Make sure you check out Eternia the metaverse game once I release it, sign up with your email when it is time for special rewards</p>
+                        <p className="section-paragraph">Click here to see my latest articles</p>
+                      </section>
+                      <section className="article">
+                        <h2 className="section-heading">Credits</h2>
+                        <p className="section-paragraph">
+                          React95 library; Flower girl is from the ED of 16bit Sensation: Another Layer; Cityscape background by me; Hatsune Miku Ievan Polkka Dance Comparison; All articles by me
+                        </p>
+                      </section>
+                    </article>
+                    <footer className="footer">
+                      <p>&copy; 2024 Eternia Blog. All rights reserved.</p>
+                    </footer>
+                  </div>
+                  <div className="sidebar">
+                    <img src="/TLRYAMITOYAK.gif" alt="yami" className="image image-yami" />
+                    <img src="/x.jpg" alt="meow" className="image image-meow" />
+                  </div>
+                </div>
+
+              </Modal.Content>
+            </Modal>
+      )}
+            
       {showgif && ( //Arona gif
-  <Modal className="modal"
+  <Modal className="modalarona"
     style={{
       width: 'fit-content',
       height: 'fit-content',
-      padding: '5px'
+      padding: '5px',
+      zIndex: 1
     }}
     icon={<Star variant="32x32_4" />}
     title="OHMYARONA"
     dragOptions={{
       defaultPosition: {
-        x: -1000,
-        y: 980,
+        x: window.innerWidth * .3 * -1,
+        y: window.innerHeight * .65,
       },
     }}
     titleBarOptions={[
@@ -246,7 +335,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             )}
 
       {showMediaPlayerLuckyop && ( //lucky star op player
-              <Modal className="modal"
+              <Modal className="modallucky"
               style={{
                 width: 'fit-content',
                 height: 'fit-content',
@@ -301,7 +390,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             )}
 
       {!isMobileDevice() && showMediaPlayerPolka && ( //Miku polka player
-              <Modal className="modal"
+              <Modal className="modalpolka"
               style={{
                 width: 'fit-content',
                 height: 'fit-content',
@@ -356,161 +445,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             </Modal>
             )}
 
-      {showModal && !isMinimized && ( //main intro modal exe
-              <Modal className="modal"
-              style={{
-                padding: '5px'
-              }}
-
-              icon={<BatExec variant="32x32_4" />}
-              title="Galactic Executable"
-              dragOptions={{
-                defaultPosition: {
-                  x: window.innerWidth * .3 * -1,
-                  y: window.innerWidth * 0.08,
-                },
-              }}
-              titleBarOptions={[
-                
-                <TitleBar.Help
-                  key="help"
-                  onClick={() => {
-                    alert('Yell Meow for help!');
-                  }}
-                />,
-                <TitleBar.Minimize key="minimize" />,
-                <TitleBar.Close key="close" onClick={() => setShowModal(false)} />,
-                
-                
-              ]}
-              buttons={[
-                //{ value: 'Close', onClick: () => setShowModal(false) },
-                //{ value: 'Minimize', onClick: () => setIsMinimized(true) },
-              ]}
-            >
-              
-
-
-              <Modal.Content
-                width= "fit-content"
-                height="fit-content"
-                boxShadow="$in"
-                //bgColor="white"
-              >
-
-                      <div style={{ display: 'flex', padding: '16px', maxWidth: '1100px', margin: '0 auto', fontFamily: 'Arial, sans-serif' }}>
-                      <div style={{ flex: 1 }}>
-                        <header style={{ borderBottom: '2px solid #85dce1', paddingBottom: '10px', marginBottom: '20px' }}>
-                          <h1 style={{ fontSize: '3.5em', margin: '0' }}>Welcome to My site!</h1>
-                          <p style={{ color: '#555', margin: '5px 0' }}>By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-22">September 22, 2024</time></p>
-                        </header>
-                        <article>
-                          <section style={{ marginBottom: '20px' }}>
-                            <h2 style={{ fontSize: '2.5em', margin: '0 0 10px 0' }}>Introduction</h2>
-                            <p style={{ fontSize: '1.2em' }} > On the left you can double click on the desktop icons to open my latest mini apps or just explore (Everything is draggable and close-able; minimizing coming soon!) </p>
-                          </section>
-                          <section style={{ marginBottom: '20px' }}>
-                            <h2 style={{ fontSize: '2.5em', margin: '0 0 10px 0' }}>Directory</h2>
-                            <p style={{ fontSize: '1.1em' }}>Here is a quick directory to my latest stuff</p>
-                            <p style={{ fontSize: '1.1em' }}>Make sure you check out Eternia the metaverse game once I release it, sign up with your email when it is time for special rewards</p>
-                            <p style={{ fontSize: '1.1em' }}>Click here to see my latest articles</p>
-                          </section>
-                          <section style={{ marginBottom: '20px' }}>
-                            <h2 style={{ fontSize: '2.5em', margin: '0 0 10px 0' }}>Credits</h2>
-                            <p style={{ fontSize: '1.1em' }}>React95 library; Flower girl is from the ED of 16bit Sensation: Another Layer; Cityscape background by me; Hatsune Miku Ievan Polkka Dance Comparison; All articles by me</p>
-                          </section>
-                        </article>
-                        <footer style={{ borderTop: '2px solid #85dce1', paddingTop: '10px', marginTop: '20px', textAlign: 'center', color: '#555' }}>
-                          <p>&copy; 2024 Eternia Blog. All rights reserved.</p>
-                        </footer>
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '20px' }}>
-                      <img src="/TLRYAMITOYAK.gif" alt="yami" style={{ maxWidth: '100%', maxHeight: '200px', width: 'auto', height: 'auto' }} />
-                      <img src="/x.jpg" alt="meow" style={{ maxWidth: '100%', maxHeight: '300px', width: 'auto', height: 'auto', marginTop: '20px' }} />
-                    </div>
-                    </div>
-
-              </Modal.Content>
-            </Modal>
-            )}
-
-
-      {/* File Explorer */}
-      {isFileExplorerOpen && (
-        <Modal
-          style={{
-            width: 'fit-content',
-            height: 'fit-content',
-            padding: '5px'
-          }}
-          icon={<WindowsExplorer variant="32x32_4" />}
-          title="File Explorer"
-          dragOptions={{
-            defaultPosition: {
-              x: -400,
-              y: 700,
-            },
-          }}
-          titleBarOptions={[
-            <TitleBar.Help
-              key="help"
-              onClick={() => {
-                alert('Yell Meow for help! Or dm on ig @godoftimee');
-              }}
-            />,
-            <TitleBar.Minimize key="minimize2" />,
-            <TitleBar.Close key="close2" onClick={() => setIsFileExplorerOpen(false)} />,
-          ]}
-          buttons={[]}
-        >
-          <Modal.Content
-      width="640px"  // Set exact width
-      height="360px" // Set exact height
-      boxShadow="$in"
-    >
-      
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px' }}>
-        {files.map((file) => (
-          <div
-            key={file}
-            onClick={() => handleFileClick(file)}
-            style={{
-              width: '100px',
-              height: '100px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              padding: '5px',
-            }}
-          >
-            {file.endsWith('.png') || file.endsWith('.gif') || file.endsWith('.jpg') ? (
-              <img
-                src={`/${currentPath}/${file}`}
-                alt={file}
-                style={{ width: '80px', height: '80px', objectFit: 'cover' }}
-              />
-            ) : file.endsWith('.mp4') ? (
-              <div style={{ width: '80px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span>🎥</span>
-              </div>
-            ) : (
-              <div style={{ width: '80px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span>{file}</span>
-              </div>
-            )}
-            <span style={{ marginTop: '5px', textAlign: 'center', fontSize: '12px' }}>{file}</span>
-          </div>
-        ))}
-      </div>
-    </Modal.Content>
-        </Modal>
-      )}
-
-      {selectedFile && (
+      {selectedFile && (/* Articles */
         <Modal
           style={{
             width: 'fit-content',
@@ -570,9 +505,6 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
           </Modal.Content>
         </Modal>
       )}
-      {/*  */}
-    
-      {/* Articles */}
       <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
               
 
@@ -659,9 +591,84 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                 </Modal.Content>
               </Modal>)}
       </div> 
-      {/*  */} 
 
-        
+      {/* File Explorer */}
+      {isFileExplorerOpen && (
+        <Modal
+          style={{
+            width: 'fit-content',
+            height: 'fit-content',
+            padding: '5px'
+          }}
+          icon={<WindowsExplorer variant="32x32_4" />}
+          title="File Explorer"
+          dragOptions={{
+            defaultPosition: {
+              x: -400,
+              y: 700,
+            },
+          }}
+          titleBarOptions={[
+            <TitleBar.Help
+              key="help"
+              onClick={() => {
+                alert('Yell Meow for help! Or dm on ig @godoftimee');
+              }}
+            />,
+            <TitleBar.Minimize key="minimize2" />,
+            <TitleBar.Close key="close2" onClick={() => setIsFileExplorerOpen(false)} />,
+          ]}
+          buttons={[]}
+        >
+          <Modal.Content
+      width="640px"  // Set exact width
+      height="360px" // Set exact height
+      boxShadow="$in"
+    >
+      
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px' }}>
+        {files.map((file) => (
+          <div
+            key={file}
+            onClick={() => handleFileClick(file)}
+            style={{
+              width: '100px',
+              height: '100px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              padding: '5px',
+            }}
+          >
+            {file.endsWith('.png') || file.endsWith('.gif') || file.endsWith('.jpg') ? (
+              <img
+                src={`/${currentPath}/${file}`}
+                alt={file}
+                style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+              />
+            ) : file.endsWith('.mp4') ? (
+              <div style={{ width: '80px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span>🎥</span>
+              </div>
+            ) : (
+              <div style={{ width: '80px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span>{file}</span>
+              </div>
+            )}
+            <span style={{ marginTop: '5px', textAlign: 'center', fontSize: '12px' }}>{file}</span>
+          </div>
+        ))}
+      </div>
+    </Modal.Content>
+        </Modal>
+      )}
+      {/* Modale windows end*/}
+
+
       <div //background settings
         style={{
           position: 'fixed',
@@ -674,7 +681,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
           backgroundSize: '70%', 
           backgroundPosition: 'center', // Centers the image
           backgroundRepeat: 'no-repeat', // Prevents the image from repeating
-          zIndex: -1, // Keeps the background behind everything
+          zIndex: -2, // Keeps the background behind everything
       }}></div>
 
       <div //backgrounds backround
@@ -689,7 +696,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
           backgroundSize: 'cover', 
           backgroundPosition: 'center', // Centers the image
           backgroundRepeat: 'no-repeat', // Prevents the image from repeating
-          zIndex: -2, // Keeps the background behind everything
+          zIndex: -3, // Keeps the background behind everything
        }}></div>
 
 
@@ -705,6 +712,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
           left: '2%',
           transform: 'translateY(-50%)',
           color: '#efdcdc', // Set text color
+          zIndex: 0
         }}>
         <BatExec variant='32x32_4' />
         meow.exe
@@ -721,6 +729,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
           left: '2%',
           transform: 'translateY(-50%)',
           color: '#efdcdc', // Set text color
+          zIndex: 0
         }}>
         <Faxcover3 variant='32x32_4' />
         Articles.exe
@@ -738,12 +747,12 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
           left: '2%',
           transform: 'translateY(-50%)',
           color: '#efdcdc', // Set text color
+          zIndex: 0
         }}>
         <CdMusic variant='32x32_4' />
         Music.exe
       </Icon>
       </Draggable> 
-
 
 
       {/*Start Button List */}

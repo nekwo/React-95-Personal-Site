@@ -192,11 +192,23 @@ color:aqua;
 
   .image-yami {
     max-height: 120px; /* Reduce max height */
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    
   }
 
   .image-meow {
-    max-height: 150px; /* Reduce max height */
-    margin-top: 10px; /* Reduce margin */
+    max-height: 150px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 3%;
+  }
+
+  .footer
+  {
+    margin-bottom: -20px;
   }
 }
 

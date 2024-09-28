@@ -139,7 +139,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
   return (
     
     <>
-      {/* modal windows */}
+      {/* -modal windows- */}
       
       {showModal && !isMinimized && ( //main intro modal exe
               <Modal className="modal"
@@ -148,7 +148,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
               title="meow.exe"
               dragOptions={{
                 defaultPosition: {
-                  x: window.innerWidth * .3 * -1,
+                  x: window.innerWidth * .305 * -1,
                   y: window.innerHeight * -0.02,
                 },
               }}
@@ -234,8 +234,8 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
     title="OHMYARONA"
     dragOptions={{
       defaultPosition: {
-        x: window.innerWidth * .3 * -1,
-        y: window.innerHeight * .65,
+        x: window.innerWidth * .35 * -1,
+        y: window.innerHeight * .67,
       },
     }}
     titleBarOptions={[
@@ -654,8 +654,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
         </Modal>
       )}
 
-
-      {/* Modale windows end*/}
+      {/* -Modale windows end- */}
 
 
       <div //background settings

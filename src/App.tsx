@@ -523,6 +523,63 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
               </Modal>)}
       </div> 
 
+      {selectedFile && (/* selected file of file explorer */
+        <Modal
+        
+          className="modal"
+          icon={<ReaderClosed variant="32x32_4" />}
+          title={selectedFile ? selectedFile.split('/').pop() : ''}
+          dragOptions={{
+            defaultPosition: {
+              x: window.innerWidth * .3 * -1,
+              y: window.innerHeight * .15,
+            },
+          }}
+          titleBarOptions={[
+            <TitleBar.Help
+              key="help"
+              onClick={() => {
+                alert('Yell Meow for help! Or dm on ig @godoftimee');
+              }}
+            />,
+            <TitleBar.Minimize key="minimize2" />,
+            <TitleBar.Close key="close2" onClick={handleCloseFileModal} />,
+          ]}
+          buttons={[]}
+        >
+          <Modal.Content
+            width="100%"  // Set exact width
+            height="100%" // Set exact height
+            boxShadow="$in"
+          >
+            {selectedFile && (selectedFile.endsWith('.txt') ? (
+              <TextArea
+                rows={20}
+                cols={60}
+                value={`Content of ${selectedFile}`}
+                readOnly
+              />
+            ) : selectedFile.endsWith('.mp4') ? (
+              <ReactPlayer
+                url={`/${selectedFile}`}
+                controls
+                width="100%"
+                height="100%"
+                playing={false}
+                muted={false}
+              />
+            ) : selectedFile.endsWith('.png') || selectedFile.endsWith('.gif') || selectedFile.endsWith('.jpg') ? (
+              <img
+                src={`/${selectedFile}`}
+                alt={selectedFile}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            ) : (
+              <p>Preview not available</p>
+            ))}
+          </Modal.Content>
+        </Modal>
+      )}
       {/* File Explorer */}
       {isFileExplorerOpen && (
         <Modal
@@ -597,63 +654,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
     </Modal.Content>
         </Modal>
       )}
-      {selectedFile && (/* selected file of file explorer */
-        <Modal
-        
-          className="modal"
-          icon={<ReaderClosed variant="32x32_4" />}
-          title={selectedFile ? selectedFile.split('/').pop() : ''}
-          dragOptions={{
-            defaultPosition: {
-              x: window.innerWidth * .3 * -1,
-              y: window.innerHeight * .15,
-            },
-          }}
-          titleBarOptions={[
-            <TitleBar.Help
-              key="help"
-              onClick={() => {
-                alert('Yell Meow for help! Or dm on ig @godoftimee');
-              }}
-            />,
-            <TitleBar.Minimize key="minimize2" />,
-            <TitleBar.Close key="close2" onClick={handleCloseFileModal} />,
-          ]}
-          buttons={[]}
-        >
-          <Modal.Content
-            width="fill"  // Set exact width
-            height="fill" // Set exact height
-            boxShadow="$in"
-          >
-            {selectedFile && (selectedFile.endsWith('.txt') ? (
-              <TextArea
-                rows={20}
-                cols={60}
-                value={`Content of ${selectedFile}`}
-                readOnly
-              />
-            ) : selectedFile.endsWith('.mp4') ? (
-              <ReactPlayer
-                url={`/${selectedFile}`}
-                controls
-                width="100%"
-                height="100%"
-                playing={false}
-                muted={false}
-              />
-            ) : selectedFile.endsWith('.png') || selectedFile.endsWith('.gif') || selectedFile.endsWith('.jpg') ? (
-              <img
-                src={`/${selectedFile}`}
-                alt={selectedFile}
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            ) : (
-              <p>Preview not available</p>
-            ))}
-          </Modal.Content>
-        </Modal>
-      )}
+
 
       {/* Modale windows end*/}
 

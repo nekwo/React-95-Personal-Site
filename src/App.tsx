@@ -40,6 +40,12 @@ const snapToGrid = (x: number, y: number, gridSize: number) => {
 
 function App() {
 
+  const isMobileDevice = () => {
+    return /Mobi|Android/i.test(navigator.userAgent);
+  };
+
+
+
   //drag and drop
   const handleStop = (e: DraggableEvent, data: DraggableData) => {
     const { newX, newY } = snapToGrid(data.x, data.y, gridSize);
@@ -79,6 +85,7 @@ function App() {
     setIsMuted(false);
   };
   useEffect(() => {
+    if (!isMobileDevice()) {
     const handleClick = () => {
       setIsMuted(false);
     };
@@ -86,6 +93,7 @@ function App() {
     return () => {
       document.removeEventListener('click', handleClick);
     };
+  }
   }, []);
 
   const [showMediaPlayerLuckyop, setshowMediaPlayerLuckyop] = useState(true)
@@ -292,7 +300,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             </Modal>
             )}
 
-      {showMediaPlayerPolka && ( //Miku polka player
+      {!isMobileDevice() && showMediaPlayerPolka && ( //Miku polka player
               <Modal className="modal"
               style={{
                 width: 'fit-content',
@@ -690,6 +698,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
       {/* Main*/}
       <Draggable position={position} onStop={handleStop}>     
       <Icon onDoubleClick={() => setShowModal(true)} 
+            onTouchEnd={() => isMobileDevice() ? setShowModal(true) : null}
         style={{
           position: 'absolute',
           top: '20%',
@@ -702,24 +711,10 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
       </Icon>
       </Draggable> 
 
-      {/* Music Player */}
-      <Draggable position={position2} onStop={handleStop2}>     
-      <Icon onDoubleClick={() => setshowMediaPlayerSpotify(true)} 
-        style={{
-          position: 'absolute',
-          top: '20%',
-          left: '6%',
-          transform: 'translateY(-50%)',
-          color: '#efdcdc', // Set text color
-        }}>
-        <CdMusic variant='32x32_4' />
-        Music.exe
-      </Icon>
-      </Draggable> 
-
       {/* Articles */}
       <Draggable position={position3} onStop={handleStop3}>     
       <Icon onDoubleClick={() => setShowArticles(true)} 
+            onTouchEnd={() => isMobileDevice() ? setShowArticles(true) : null}
         style={{
           position: 'absolute',
           top: '28%',
@@ -732,6 +727,23 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
       </Icon>
       </Draggable> 
       {/*  */}
+
+      {/* Music Player */}
+      <Draggable position={position2} onStop={handleStop2}>     
+      <Icon onDoubleClick={() => setshowMediaPlayerSpotify(true)} 
+            onTouchEnd={() => isMobileDevice() ? setshowMediaPlayer(true) : null}
+        style={{
+          position: 'absolute',
+          top: '36%',
+          left: '2%',
+          transform: 'translateY(-50%)',
+          color: '#efdcdc', // Set text color
+        }}>
+        <CdMusic variant='32x32_4' />
+        Music.exe
+      </Icon>
+      </Draggable> 
+
 
 
       {/*Start Button List */}

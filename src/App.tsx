@@ -109,28 +109,27 @@ function App() {
   const [selectedArticle, setSelectedArticle] = useState<typeof articles[0] | null>(null);
 
 
-  const [showgif, setshowgif] = useState(true)
-
-
-  const [currentPath, setCurrentPath] = useState<string>('public');
+  const [showgif, setshowgif] = useState(true);
   const [files, setFiles] = useState<string[]>([
-    '/x.jpg', 'arona-blue-archive.gif', 'Flowerwaifu.png','TLRYAMITOYAK.gif','CityScape.png','levanpolkacomp.mp4']);
+    'x.jpg', 
+    'arona-blue-archive.gif', 
+    'Flowerwaifu.png',
+    'TLRYAMITOYAK.gif',
+    'CityScape.png',
+    'levanpolkacomp.mp4'
+  ]);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   
   const handleFileClick = (file: string) => {
     if (file.includes('.')) {
-      setSelectedFile(`${currentPath}/${file}`);
+      setSelectedFile(file);
     } else {
-      const newPath = `${currentPath}/${file}`;
-      setCurrentPath(newPath);
+      // Handle directory navigation if needed
+      console.log(`Navigating to directory: ${file}`);
     }
   };
   
-  const handleBackClick = () => {
-    const newPath = currentPath.split('/').slice(0, -1).join('/');
-    setCurrentPath(newPath || 'public');
-  };
-
+  
 const handleCloseFileModal = () => {
   setSelectedFile(null);
 };
@@ -634,7 +633,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
           >
             {file.endsWith('.png') || file.endsWith('.gif') || file.endsWith('.jpg') ? (
               <img
-                src={`/${currentPath}/${file}`}
+                src={`/${file}`}
                 alt={file}
                 style={{ width: '80px', height: '80px', objectFit: 'cover' }}
               />

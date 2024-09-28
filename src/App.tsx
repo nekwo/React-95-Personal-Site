@@ -145,7 +145,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
               <Modal className="modal"
               
               icon={<BatExec variant="32x32_4" />}
-              title="Galactic Executable"
+              title="meow.exe"
               dragOptions={{
                 defaultPosition: {
                   x: window.innerWidth * .3 * -1,

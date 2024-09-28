@@ -43,7 +43,7 @@ export const articles = [
             <section className="article">
               <h2 className="section-heading">Work Experience</h2>
               <p className="section-paragraph">
-                Due to the corrupt financial and education system, I had to learn everything myself, so I run my own stuff @ Arcadia Labs. If you need something done for the right price, @me on Twitter @retrocause.
+                Shout out to the corrupt financial and education system, I run my own stuff @ Arcadia Labs. If you need something done for the right price, @me on Twitter @retrocaus or on IG.
               </p>
             </section>
           </article>
@@ -67,7 +67,7 @@ export const articles = [
           <header className="header">
             <h1 className="MainAH1">Meow!</h1>
             <p className="paragraph">
-              By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-25">September 22, 2024</time>
+              By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-25">September 28, 2024</time>
             </p>
           </header>
           <article>

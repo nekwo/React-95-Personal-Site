@@ -358,8 +358,8 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
               title="Galactic Executable"
               dragOptions={{
                 defaultPosition: {
-                  x: -900,
-                  y: 300,
+                  x: window.innerWidth * .3 * -1,
+                  y: window.innerWidth * 0.08,
                 },
               }}
               titleBarOptions={[

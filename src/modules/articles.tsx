@@ -43,7 +43,7 @@ export const articles = [
             <section className="article">
               <h2 className="section-heading">Work Experience</h2>
               <p className="section-paragraph">
-                Shout out to the corrupt financial and education system, I run my own stuff @ Arcadia Labs. If you need something done for the right price, @me on Twitter @retrocaus or on IG.
+                Shout out to the corrupt financial and education system, I run my own stuff @ Arcadia Labs. If you need something done for the right price, @me on Twitter @retrocaus or on IG @godoftimee.
               </p>
             </section>
           </article>

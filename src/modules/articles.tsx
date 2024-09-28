@@ -3,7 +3,7 @@
 export const articles = [
   {
     title: "My Portfolio",
-    date: "2024-09-25",
+    date: "2024-09-28",
     author: "Nekwo aka Retrocaus",
     content: (
       <div className="container">
@@ -11,7 +11,7 @@ export const articles = [
           <header className="header">
             <h1 className="MainAH1">This is What I'm up to!</h1>
             <p className="paragraph">
-              By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-22">September 22, 2024</time>
+              By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-28">September 28, 2024</time>
             </p>
           </header>
           <article>
@@ -59,7 +59,7 @@ export const articles = [
   },
   {
     title: "Meow meow meow",
-    date: "2024-09-22",
+    date: "2024-09-27",
     author: "Nekwo aka Retrocaus",
     content: (
       <div className="container">
@@ -67,7 +67,7 @@ export const articles = [
           <header className="header">
             <h1 className="MainAH1">Meow!</h1>
             <p className="paragraph">
-              By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-25">September 28, 2024</time>
+              By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-28">September 27, 2024</time>
             </p>
           </header>
           <article>

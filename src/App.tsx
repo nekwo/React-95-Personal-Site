@@ -55,7 +55,7 @@ function App() {
   const handleStop2 = (e: DraggableEvent, data: DraggableData) => {
     const { newX, newY } = snapToGrid(data.x, data.y, gridSize);
     setPosition2({ x: newX, y: newY });
-    isMobileDevice() ? setshowMediaPlayer(true) : null
+    isMobileDevice() ? setshowMediaPlayerSpotify(true) : null
   };
   const handleStop3 = (e: DraggableEvent, data: DraggableData) => {
     const { newX, newY } = snapToGrid(data.x, data.y, gridSize);
@@ -144,17 +144,13 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
       
       {showModal && !isMinimized && ( //main intro modal exe
               <Modal className="modal"
-              style={{
-                padding: '5px',
-                zIndex: 1
-              }}
-
+              
               icon={<BatExec variant="32x32_4" />}
               title="Galactic Executable"
               dragOptions={{
                 defaultPosition: {
                   x: window.innerWidth * .3 * -1,
-                  y: window.innerWidth * 0.08,
+                  y: window.innerHeight * -0.02,
                 },
               }}
               titleBarOptions={[
@@ -190,7 +186,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                     <header className="header">
                       <h1 className="MainAH1">Welcome to My site!</h1>
                       <p className="paragraph">
-                        By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-22">September 22, 2024</time>
+                        By <strong>Nekwo aka Retrocaus</strong> | Published on <time dateTime="2024-9-28">September 28, 2024</time>
                       </p>
                     </header>
                     <article>
@@ -203,13 +199,13 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                       <section className="article">
                         <h2 className="section-heading">Directory</h2>
                         <p className="section-paragraph">Here is a quick directory to my latest stuff</p>
-                        <p className="section-paragraph">Make sure you check out Eternia the metaverse game once I release it, sign up with your email when it is time for special rewards</p>
-                        <p className="section-paragraph">Click here to see my latest articles</p>
+                        <p className="section-paragraph">Make sure you check out Eternia the metaverse app once I release it, sign up with your email when registrations open for special rewards</p>
+                        <p className="section-paragraph">Click Articles.exe to see my latest articles</p>
                       </section>
                       <section className="article">
                         <h2 className="section-heading">Credits</h2>
                         <p className="section-paragraph">
-                          React95 library; Flower girl is from the ED of 16bit Sensation: Another Layer; Cityscape background by me; Hatsune Miku Ievan Polkka Dance Comparison; All articles by me
+                          React95 library; Flower girl is from the ED of 16bit Sensation: Another Layer; Cityscape background by me; Hatsune Miku Ievan Polkka Dance Comparison (desktop view only); All articles by me
                         </p>
                       </section>
                     </article>
@@ -218,8 +214,8 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                     </footer>
                   </div>
                   <div className="sidebar">
-                    <img src="/TLRYAMITOYAK.gif" alt="yami" className="image image-yami" />
                     <img src="/x.jpg" alt="meow" className="image image-meow" />
+                    <img src="/TLRYAMITOYAK.gif" alt="yami" className="image image-yami" />
                   </div>
                 </div>
 
@@ -283,8 +279,8 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
               title="Music Player"
               dragOptions={{
                 defaultPosition: {
-                  x: 400,
-                  y: 500,
+                  x: window.innerWidth * .3 * -1,
+                  y: window.innerHeight * .65,
                 },
               }}
               titleBarOptions={[
@@ -445,81 +441,16 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             </Modal>
             )}
 
-      {selectedFile && (/* Articles */
-        <Modal
-          style={{
-            width: 'fit-content',
-            height: 'fit-content',
-            padding: '5px'
-          }}
-          icon={<ReaderClosed variant="32x32_4" />}
-          title={selectedFile ? selectedFile.split('/').pop() : ''}
-          dragOptions={{
-            defaultPosition: {
-              x: -400,
-              y: 250,
-            },
-          }}
-          titleBarOptions={[
-            <TitleBar.Help
-              key="help"
-              onClick={() => {
-                alert('Yell Meow for help! Or dm on ig @godoftimee');
-              }}
-            />,
-            <TitleBar.Minimize key="minimize2" />,
-            <TitleBar.Close key="close2" onClick={handleCloseFileModal} />,
-          ]}
-          buttons={[]}
-        >
-          <Modal.Content
-            width="640px"  // Set exact width
-            height="360px" // Set exact height
-            boxShadow="$in"
-          >
-            {selectedFile && (selectedFile.endsWith('.txt') ? (
-              <TextArea
-                rows={20}
-                cols={60}
-                value={`Content of ${selectedFile}`}
-                readOnly
-              />
-            ) : selectedFile.endsWith('.mp4') ? (
-              <ReactPlayer
-                url={`/${selectedFile}`}
-                controls
-                width="100%"
-                height="100%"
-                playing={false}
-                muted={false}
-              />
-            ) : selectedFile.endsWith('.png') || selectedFile.endsWith('.gif') || selectedFile.endsWith('.jpg') ? (
-              <img
-                src={`/${selectedFile}`}
-                alt={selectedFile}
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            ) : (
-              <p>Preview not available</p>
-            ))}
-          </Modal.Content>
-        </Modal>
-      )}
+      {/* Articles */}
       <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-              
-
               {showArticles &&(<Modal
-                style={{
-                  width: 'fit-content',
-                  height: 'fit-content',
-                  padding: '5px',
-                }}
+                className="modal"
                 icon={<Star variant="32x32_4" />}
                 title={selectedArticle ? selectedArticle.title : 'Articles'}
                 dragOptions={{
                   defaultPosition: {
-                    x: -200,
-                    y: 500,
+                    x: window.innerWidth * .3 * -1,
+                    y: window.innerHeight * .15,
                   },
                 }}
                 titleBarOptions={[
@@ -604,8 +535,8 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
           title="File Explorer"
           dragOptions={{
             defaultPosition: {
-              x: -400,
-              y: 700,
+              x: window.innerWidth * .3 * -1,
+              y: window.innerHeight * .55,
             },
           }}
           titleBarOptions={[
@@ -666,6 +597,64 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
     </Modal.Content>
         </Modal>
       )}
+      {selectedFile && (/* selected file of file explorer */
+        <Modal
+        
+          className="modal"
+          icon={<ReaderClosed variant="32x32_4" />}
+          title={selectedFile ? selectedFile.split('/').pop() : ''}
+          dragOptions={{
+            defaultPosition: {
+              x: window.innerWidth * .3 * -1,
+              y: window.innerHeight * .15,
+            },
+          }}
+          titleBarOptions={[
+            <TitleBar.Help
+              key="help"
+              onClick={() => {
+                alert('Yell Meow for help! Or dm on ig @godoftimee');
+              }}
+            />,
+            <TitleBar.Minimize key="minimize2" />,
+            <TitleBar.Close key="close2" onClick={handleCloseFileModal} />,
+          ]}
+          buttons={[]}
+        >
+          <Modal.Content
+            width="fill"  // Set exact width
+            height="fill" // Set exact height
+            boxShadow="$in"
+          >
+            {selectedFile && (selectedFile.endsWith('.txt') ? (
+              <TextArea
+                rows={20}
+                cols={60}
+                value={`Content of ${selectedFile}`}
+                readOnly
+              />
+            ) : selectedFile.endsWith('.mp4') ? (
+              <ReactPlayer
+                url={`/${selectedFile}`}
+                controls
+                width="100%"
+                height="100%"
+                playing={false}
+                muted={false}
+              />
+            ) : selectedFile.endsWith('.png') || selectedFile.endsWith('.gif') || selectedFile.endsWith('.jpg') ? (
+              <img
+                src={`/${selectedFile}`}
+                alt={selectedFile}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            ) : (
+              <p>Preview not available</p>
+            ))}
+          </Modal.Content>
+        </Modal>
+      )}
+
       {/* Modale windows end*/}
 
 
@@ -705,7 +694,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
       {/* Main*/}
       <Draggable position={position} onStop={handleStop}>     
       <Icon onDoubleClick={() => setShowModal(true)} 
-            onTouchEnd={() => isMobileDevice() ? setShowModal(true) : null}
+            
         style={{
           position: 'absolute',
           top: '20%',
@@ -740,7 +729,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
       {/* Music Player */}
       <Draggable position={position2} onStop={handleStop2}>     
       <Icon onDoubleClick={() => setshowMediaPlayerSpotify(true)} 
-            onTouchEnd={() => isMobileDevice() ? setshowMediaPlayer(true) : null}
+            
         style={{
           position: 'absolute',
           top: '36%',

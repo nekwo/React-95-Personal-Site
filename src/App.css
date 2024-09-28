@@ -132,57 +132,71 @@ color:aqua;
 }
 
 .modal {
-  padding: '5px'
+  
+  padding: '5px';
+  z-index: 1;
 }
 
-/* Responsive styles for mobile devices */
 @media (max-width: 600px) {
 
   .modal {
-    width: 95%;
-    padding: '5px'
+    width: 90%; /* Reduce the width */
+    padding: 5px; /* Remove quotes around padding value */
+    z-index: 1;
+    
   }
 
-  .MainAH1{
-    font-size: 1.5em;
-  } 
+  .MainAH1 {
+    font-size: 1em; /* Reduce font size */
+  }
+
+  .paragraph {
+    color: #555;
+    margin: 2px 0; /* Further reduce margin */
+    font-size: 8px;
+  }
 
   .container {
     flex-direction: column;
-    padding: 8px;
+    padding: 4px; /* Reduce padding */
   }
 
   .header {
-    padding-bottom: 8px;
-    margin-bottom: 16px;
+    padding-bottom: 2px; /* Further reduce padding */
+    margin-bottom: 4px; /* Further reduce margin */
   }
 
   .section-heading {
-    font-size: 1.8em;
+    font-size: 1.0em; /* Reduce font size */
+    margin-top: 0; /* Remove top margin */
+    margin-bottom: 0; /* Remove bottom margin */
+    padding: 0; /* Remove any padding */
   }
 
   .section-paragraph,
   .introduction-paragraph {
-    font-size: 1em;
+    font-size: 0.8em; /* Reduce font size */
+    margin-bottom: 4px; /* Reduce margin */
   }
 
   .footer {
-    padding-top: 8px;
-    margin-top: 16px;
+    padding-top: 2px; /* Further reduce padding */
+    margin-top: 4px; /* Further reduce margin */
+    font-size: 7px; /* Reduce font size */
   }
 
   .sidebar {
     margin-left: 0;
-    margin-top: 20px;
+    margin-top: 10px; /* Reduce margin */
   }
 
   .image-yami {
-    max-height: 150px;
+    max-height: 120px; /* Reduce max height */
   }
 
   .image-meow {
-    max-height: 200px;
-    margin-top: 16px;
+    max-height: 150px; /* Reduce max height */
+    margin-top: 10px; /* Reduce margin */
   }
 }
 

@@ -713,7 +713,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             onTouchEnd={() => isMobileDevice() ? setShowArticles(true) : null}
         style={{
           position: 'absolute',
-          top: '28%',
+          top: '35%',
           left: '2%',
           transform: 'translateY(-50%)',
           color: '#efdcdc', // Set text color
@@ -731,7 +731,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
             
         style={{
           position: 'absolute',
-          top: '36%',
+          top: '50%',
           left: '2%',
           transform: 'translateY(-50%)',
           color: '#efdcdc', // Set text color

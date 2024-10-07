@@ -193,6 +193,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                         <h2 className="section-heading">Introduction</h2>
                         <p className="introduction-paragraph">
                           On the left you can double click on the desktop icons to open my latest mini apps or just explore (Everything is draggable and close-able; minimizing coming soon!)
+                          Follow me on X/twitter < a href="https://x.com/retrocaus"> here</a> for updates on my projects
                         </p>
                       </section>
                       <section className="article">

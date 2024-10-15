@@ -64,11 +64,11 @@ function App() {
   };
 
   //Modal exe state
-  const [showModal, setShowModal] = useState(true)
+  const [showModal, setShowModal] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const [showMediaPlayerPolka, setshowMediaPlayer] = useState(true)
+  const [showMediaPlayerPolka, setshowMediaPlayer] = useState(false)
   //const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isMuted, setIsMuted] = useState(true);
   const videoUrls = [
@@ -98,7 +98,7 @@ function App() {
   }
   }, []);
 
-  const [showMediaPlayerLuckyop, setshowMediaPlayerLuckyop] = useState(true)
+  const [showMediaPlayerLuckyop, setshowMediaPlayerLuckyop] = useState(false)
   const [showMediaPlayerSpotify, setshowMediaPlayerSpotify] = useState(false)
   const [position2, setPosition2] = useState({ x: 0, y: 0 });
 
@@ -109,7 +109,7 @@ function App() {
   const [selectedArticle, setSelectedArticle] = useState<typeof articles[0] | null>(null);
 
 
-  const [showgif, setshowgif] = useState(true);
+  const [showgif, setshowgif] = useState(false);
   const [files, setFiles] = useState<string[]>([
     'x.jpg', 
     'arona-blue-archive.gif', 
@@ -136,6 +136,18 @@ const handleCloseFileModal = () => {
 
 const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
 
+
+
+  // Initial state setup
+  useEffect(() => {
+setshowgif(true);
+setshowMediaPlayerSpotify(true);
+setshowMediaPlayerLuckyop(true);
+setshowMediaPlayer(true);
+setShowModal(true);
+  }, []);
+
+
   return (
     
     <>
@@ -143,7 +155,11 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
       
       {showModal && !isMinimized && ( //main intro modal exe
               <Modal className="modal"
-              
+              style={{
+                width: 'fit-content',
+                height: 'fit-content',
+                padding: '5px'
+              }}
               icon={<BatExec variant="32x32_4" />}
               title="meow.exe"
               dragOptions={{
@@ -160,7 +176,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                     alert('Yell Meow for help!');
                   }}
                 />,
-                <TitleBar.Minimize key="minimize" />,
+                <Modal.Minimize key="minimize" />,
                 <TitleBar.Close key="close" onClick={() => setShowModal(false)} />,
                 
                 
@@ -246,7 +262,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
           alert('Yell Meow for help!');
         }}
       />,
-      <TitleBar.Minimize key="minimize2" />,
+      <Modal.Minimize key="minimize2" />,
       <TitleBar.Close key="close2" onClick={() => setshowgif(false)} />,
     ]}
     buttons={[]}
@@ -291,7 +307,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                     alert('Yell Meow for help!');
                   }}
                 />,
-                <TitleBar.Minimize key="minimize2"  />,
+                <Modal.Minimize key="minimize2"  />,
                 <TitleBar.Close key="close2" onClick={() => setshowMediaPlayerSpotify(false)} />,
                 
                 
@@ -354,7 +370,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                     alert('Yell Meow for help! Or dm on ig @godoftimee');
                   }}
                 />,
-                <TitleBar.Minimize key="minimize2"  />,
+                <Modal.Minimize key="minimize2"  />,
                 <TitleBar.Close key="close2" onClick={() => setshowMediaPlayerLuckyop(false)} />,
                 
                 
@@ -409,7 +425,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                     alert('Yell Meow for help!');
                   }}
                 />,
-                <TitleBar.Minimize key="minimize2"  />,
+                <Modal.Minimize key="minimize2"  />,
                 <TitleBar.Close key="close2" onClick={() => setshowMediaPlayer(false)} />,
                 
                 
@@ -460,7 +476,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                       alert('Yell Meow for help!');
                     }}
                   />,
-                  <TitleBar.Minimize key="minimize" />,
+                  <Modal.Minimize key="minimize" />,
                   <TitleBar.Close key="close" onClick={() => { setSelectedArticle(null); setShowArticles(false); }} />,
                 ]}
                 buttons={[]}
@@ -542,7 +558,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                 alert('Yell Meow for help! Or dm on ig @godoftimee');
               }}
             />,
-            <TitleBar.Minimize key="minimize2" />,
+            <Modal.Minimize key="minimize2" />,
             <TitleBar.Close key="close2" onClick={handleCloseFileModal} />,
           ]}
           buttons={[]}
@@ -603,7 +619,7 @@ const [isFileExplorerOpen, setIsFileExplorerOpen] = useState(false);
                 alert('Yell Meow for help! Or dm on ig @godoftimee');
               }}
             />,
-            <TitleBar.Minimize key="minimize2" />,
+            <Modal.Minimize key="minimize2" />,
             <TitleBar.Close key="close2" onClick={() => setIsFileExplorerOpen(false)} />,
           ]}
           buttons={[]}

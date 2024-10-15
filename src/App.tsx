@@ -295,8 +295,8 @@ setShowModal(true);
               title="Music Player"
               dragOptions={{
                 defaultPosition: {
-                  x: window.innerWidth * .3 * -1,
-                  y: window.innerHeight * .65,
+                  x: window.innerWidth * .2 * -1,
+                  y: window.innerHeight * .55,
                 },
               }}
               titleBarOptions={[
@@ -346,7 +346,7 @@ setShowModal(true);
             </Modal>
             )}
 
-      {showMediaPlayerLuckyop && ( //lucky star op player
+      {!isMobileDevice() && showMediaPlayerLuckyop && ( //lucky star op player
               <Modal className="modallucky"
               style={{
                 width: 'fit-content',
@@ -358,8 +358,8 @@ setShowModal(true);
               title="Lucky"
               dragOptions={{
                 defaultPosition: {
-                  x: 400,
-                  y: 700,
+                  x: window.innerWidth * .2 ,
+                  y: window.innerHeight * .55,
                 },
               }}
               titleBarOptions={[

@@ -165,9 +165,16 @@ body {
 
 
 
-/*mobile css*/
-/* Default modal styles */
+/* Default styles for the iframe */
+.spotify-iframe {
+  width: 100%;
+  height: 352px;
+}
 
-
-/* Responsive styles for mobile devices */
-
+/* Media query for mobile view */
+@media (max-width: 600px) {
+  .spotify-iframe {
+    width: 100%;
+    height: 352px; /* Adjust the height as needed for mobile view */
+  }
+}

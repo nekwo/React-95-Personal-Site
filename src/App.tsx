@@ -319,8 +319,8 @@ setShowModal(true);
             >
               
               <Modal.Content
-                 width="640px"  // Set exact width
-                 height="360px" // Set exact height
+                 width="fill"  
+                 height="fill" 
                 boxShadow="$in"
               >
 
@@ -331,13 +331,13 @@ setShowModal(true);
         }}
       >
         <iframe
+          className="spotify-iframe"
           src="https://open.spotify.com/embed/playlist/6onmykglWM378jdXBtvbzh?si=017c25ed5bdc41c9?utm_source=generator&theme=0 "
-          width="100%"
-          height="352px"
+
           frameBorder="0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
-          title="The Ultimate Lo-Fi House Playlist on Spotify"
+          title="The Ultimate Playlist on Spotify"
         />
       </Frame>
 
